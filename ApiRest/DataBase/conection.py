@@ -6,7 +6,7 @@ import logging
 
 #conection con el servidor
 
-class conection:
+class Conection:
 
     def __init__(self,host, user, password) -> None:
         self.host = host
@@ -32,16 +32,20 @@ class conection:
                 logging.error('Wrong Credentials')
                 return None
             else:
-                conection = mysql.connector.connect(
+                self.conection = mysql.connector.connect(
                     host = self.host,
                     user = user,
                     password = password,
                 )
-                cursor = conection.cursor()
-                logging.info('Successfull conection')
+                self.cursor = self.conection.cursor()
                 print('Successfull conection')
-                return cursor
+                return self.cursor
         except mysql.connector.Error as e:
             logging.error(f'Database conection failed: {e}')
+
+    def close_con(self):
+        self.cursor.close()
+        self.conection.close()
+        logging.warning('Conection close')
 
 
