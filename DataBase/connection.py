@@ -4,9 +4,9 @@ import json
 import os
 import logging
 
-#conection con el servidor
+#connection con el servidor
 
-class Conection:
+class Connection:
 
     def __init__(self,host, user, password) -> None:
         self.host = host
@@ -25,33 +25,33 @@ class Conection:
         else:
             return False
 
-    def conection_to_database(self):
+    def connection_to_database(self):
         user, password = self.__get_credentials()
         try:
             if not self.__validate(user, password):
                 logging.error('Wrong Credentials')
                 return None
             else:
-                self.conection = mysql.connector.connect(
+                self.connection = mysql.connector.connect(
                     host = self.host,
                     user = user,
                     password = password,
                 )
-                self.cursor = self.conection.cursor()
-                print('Successfull conection')
-                return self.cursor
+                self.cursor = self.connection.cursor()
+                print('Successfull connection')
+                return self.cursor, self.connection
         except mysql.connector.Error as e:
-            logging.error(f'Database conection failed: {e}')
+            logging.error(f'Database connection failed: {e}')
         
     def upgrade_database(self):
         try:
-            self.conection.commit()
+            self.connection.commit()
         except mysql.connector.Error as e:
             logging.error(f'Database upgrade failed: {e}')
 
     def close_con(self):
         self.cursor.close()
-        self.conection.close()
-        logging.warning('Conection close')
+        self.connection.close()
+        logging.warning('connection close')
 
 
