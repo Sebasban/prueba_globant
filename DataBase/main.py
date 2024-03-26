@@ -8,7 +8,6 @@ import pandas as pd
 ######################s###################################
 currently_path = os.path.dirname(os.path.abspath(__file__))
 path_csv = os.path.join(currently_path, '..', 'resources')
-path_backups = os.path.join(currently_path, '..', 'backups')
 ###########################################################
 
 #CONECTION
@@ -18,7 +17,7 @@ host = 'localhost'
 user = input('User: ')
 password = input('Password: ')
 connection = Connection(host,user,password)
-cursor, connection = connection.connection_to_database()
+cursor, _ = connection.connection_to_database()
 helper = Helper(cursor)
 ##########################################
 
@@ -34,22 +33,23 @@ helper = Helper(cursor)
 #helper.drop_tables('DBTG','jobs')
 #helper.drop_tables('DBTG','hired_employees')
 
-#fields = {
-#          'departments':'id, department',
-#          'jobs':'id, job',
-#          'hired_employees':'id, name, datetime, department_id, job_id'
-#          }
-#
+fields = {
+          'departments':'id, department',
+          'jobs':'id, job',
+          'hired_employees':'id, name, datetime, department_id, job_id'
+          }
+
 #for tables,values in fields.items():
 #    df = pd.read_csv(f'{path_csv}/{tables}.csv', sep = ';')
 #    helper.insert(df, 'DBTG', tables, values)
 #    connection.upgrade_database()
 ################################################################################################################################
-    
-#Back up 
-    
-##########################
-from backup import Backup
 
-backup = Backup(cursor, 'DBTG', 'jobs')
-backup.generate_backup()
+#Backup restore
+############################
+from backup_restore import Restore
+fields = {'departments':'id, department'}
+backup = Restore(cursor)
+backup.restore_table('DBTG', 'departments', 'id INT, department VARCHAR(255)', )
+backup.insert_data('departments', fields)
+connection.upgrade_database()
