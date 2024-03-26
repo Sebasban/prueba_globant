@@ -1,17 +1,17 @@
-#Gestión de Base de Datos
+# Gestión de Base de Datos
 Este proyecto consiste en un script de Python diseñado para facilitar la gestión de una base de datos relacional. El script proporciona funcionalidades para la conexión a la base de datos, modelado de datos y restauración de respaldo.
 
-##Funcionalidades
+## Funcionalidades
 Conexión a la Base de Datos: El script permite establecer una conexión a una base de datos MySQL utilizando credenciales proporcionadas por el usuario.
 
-##Modelado de Datos: 
+## Modelado de Datos: 
 Se incluye la capacidad de crear y modificar la estructura de la base de datos mediante la creación, modificación y eliminación de tablas.
 
 Carga de Datos desde Archivos CSV: También se ofrece la funcionalidad de cargar datos desde archivos CSV a la base de datos para poblar las tablas.
 
 Restauración de Respaldo: El script incluye una función para restaurar respaldos de tablas específicas en la base de datos.
 
-##Estructura del Proyecto
+## Estructura del Proyecto
 connection.py: Contiene la clase Connection que maneja la conexión a la base de datos.
 
 create_schema.py: Contiene la clase Helper que proporciona métodos para el modelado de datos, como la creación y eliminación de tablas.
@@ -22,7 +22,7 @@ resources: Directorio que almacena archivos CSV utilizados para cargar datos en 
 
 main.py: El archivo principal que ejecuta el script principal.
 
-##Uso
+## Uso
 Clona este repositorio en tu máquina local.
 
 Asegúrate de tener instalado Python 3 y las dependencias necesarias, las cuales se pueden instalar mediante pip con el comando:
@@ -30,10 +30,10 @@ pip install -r requirements.txt
 
 Ejecuta el script main.py para iniciar la gestión de la base de datos.
 
-#API de Gestión de Base de Datos
+# API de Gestión de Base de Datos
 Este proyecto consiste en una API desarrollada con FastAPI que facilita la inserción de datos en una base de datos MySQL. La API permite insertar datos en diferentes tablas de la base de datos de manera flexible.
 
-##Funcionalidades
+## Funcionalidades
 Inserción de Datos: La API permite insertar datos en tablas específicas de la base de datos utilizando solicitudes HTTP POST.
 Estructura del Proyecto
 main.py: Contiene la definición de la API utilizando FastAPI, así como las rutas y lógica necesarias para la inserción de datos en la base de datos.
@@ -89,7 +89,7 @@ else:
     print("Error:", response.status_code)
 Asegúrate de ejecutar este script desde un entorno donde tengas instalado Python y el paquete requests.
 
-Notas
+# Notas
 Asegúrate de tener los permisos adecuados para realizar operaciones de inserción en la base de datos.
 
 Antes de ejecutar la API en un entorno de producción, asegúrate de entender las consecuencias de las operaciones que realizará, especialmente aquellas relacionadas con la modificación de datos en la base de datos.
