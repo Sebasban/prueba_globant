@@ -1,4 +1,5 @@
 import logging
+from backup import Backup
 
 class Helper:
 
@@ -35,7 +36,7 @@ class Helper:
     
     def __data_insert(self, df, db_name, table_name, fields):
         try:
-            df = df.fillna(99)
+            df = df.fillna(999999)
             for _, row in df.iterrows():
                     values = tuple(row)
                     self.cursor.execute(f'INSERT INTO {db_name}.{table_name} ({fields}) VALUES {values}')
@@ -58,4 +59,6 @@ class Helper:
 
     def insert(self, df, db_name, table_name, fields):
         self.__data_insert(df,db_name, table_name, fields)
+        backup = Backup(self.cursor)
+        backup.generate_backup(db_name, table_name)
 
