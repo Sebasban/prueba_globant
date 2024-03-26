@@ -16,9 +16,7 @@ data = [
 
 response = requests.post(url,json=data)
 
-# Verificar el estado de la respuesta
 if response.status_code == 200:
-    # Imprimir el contenido de la respuesta
     print(response.json())
 else:
     print("Error:", response.status_code)
